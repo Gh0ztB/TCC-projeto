@@ -54,6 +54,7 @@ img {
 }
 .wrapper .main_content .info{
     margin: 20px;
+    height: 100px;
     color: #717171;
     line-height: 25px;
 }
