@@ -10,19 +10,14 @@
 <body>
     <div class="wrapper">
         <div class="sidebar">
-
             <div>
                 <a href="Principal.html"><img src="1.png" alt=""></a>        
                 <a href="Notificaçao.html"><img src="2.png" alt=""></a>        
                 <a href="Cuidador.html"><img src="3.png" alt=""></a>        
-                
             </div>
             <div class="perfil">
                 <img class="logo" src="recover.png" alt="">           
             </div>
-            
-
-            
         </div>
         <div class="main_content">
             <style>
@@ -32,14 +27,124 @@
             </style>
             <div class="header">Perfil dos Idosos </div>
             <div class="info">
-                <div>
-            
-                    <a href="/Idoso/Cadastroidoso.html"><img src="4.png" alt=""></a>
-                
+                <div class="profile-container">
+                    <div class="add-profile" id="add-profile">
+                        <img src="4.png" alt=""><p>Cadastrar Idoso</p>
+                    </div>
+                    <div class="profile-list">
+                        <!-- Perfis vão aqui -->
+                    </div>
+                </div>
+           </div>
+        </div>
+        <div class="popup" id="popup">
+            <div class="popup-content">
+                <span class="material-symbols-outlined close" id="close-popup">close</span>
+                <h2 id="popup-titulo">Adicionar Perfil</h2>
+                <form id="perfil-form">
+                    <input type="hidden" id="profile-id">
+                    <label for="nome">Nome:</label>
+                    <input type="text" id="nome" required>
+                    <label for="apelido">Apelido:</label>
+                    <input type="text" id="apelido" required>
+                    <label for="ddn">Data de Nascimento:</label>
+                    <input type="date" id="ddn" required>
+                    <label for="senha">Senha:</label>
+                    <input type="password" id="senha" required>
+                    <label for="confirmarsenha">Confirmar Senha:</label>
+                    <input type="password" id="confirmarsenha" required>
+                    <button type="submit" id="submit-btn">Cadastrar</button>
+                </form>
             </div>
         </div>
-        
     </div>
-    
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const addProfileBtn = document.getElementById('add-profile');
+            const popup = document.getElementById('popup');
+            const closePopupBtn = document.getElementById('close-popup');
+            const profileList = document.querySelector('.profile-list');
+
+            let profiles = []; // Array para armazenar perfis
+
+            addProfileBtn.addEventListener('click', function() {
+                // Limpar campos do formulário para novo perfil
+                document.getElementById('perfil-form').reset();
+                popup.style.display = 'flex'; // Exibe o popup
+            });
+
+            closePopupBtn.addEventListener('click', function() {
+                popup.style.display = 'none'; // Oculta o popup
+            });
+
+            // Fecha o popup se o usuário clicar fora dele
+            window.addEventListener('click', function(event) {
+                if (event.target === popup) {
+                    popup.style.display = 'none';
+                }
+            });
+
+            // Adiciona novo perfil
+            document.getElementById('perfil-form').addEventListener('submit', function(event) {
+                event.preventDefault();
+                
+                const nome = document.getElementById('nome').value;
+                const apelido = document.getElementById('apelido').value;
+                const ddn = document.getElementById('ddn').value;
+                const senha = document.getElementById('senha').value;
+                const confirmarsenha = document.getElementById('confirmarsenha').value;
+                
+                if (senha !== confirmarsenha) {
+                    alert('As senhas não conferem.');
+                    return;
+                }
+
+                const profileId = document.getElementById('profile-id').value;
+                
+                if (profileId) {
+                    // Editar perfil existente
+                    const profileIndex = profiles.findIndex(profile => profile.id === profileId);
+                    if (profileIndex !== -1) {
+                        profiles[profileIndex] = { id: profileId, nome, apelido, ddn };
+                    }
+                } else {
+                    // Adicionar novo perfil
+                    const newProfile = {
+                        id: Date.now().toString(), // Gera um ID único para o perfil
+                        nome,
+                        apelido,
+                        ddn
+                    };
+                    profiles.push(newProfile);
+                }
+
+                updateProfileList();
+                popup.style.display = 'none';
+            });
+
+            function updateProfileList() {
+                profileList.innerHTML = profiles.map(profile => `
+                    <div class="profile-item">
+                        <p><strong>Nome:</strong> ${profile.nome}</p>
+                        <p><strong>Apelido:</strong> ${profile.apelido}</p>
+                        <p><strong>Data de Nascimento:</strong> ${profile.ddn}</p>
+                        <button onclick="editProfile('${profile.id}')">Editar</button>
+                    </div>
+                `).join('');
+            }
+
+            window.editProfile = function(profileId) {
+                const profile = profiles.find(profile => profile.id === profileId);
+                if (profile) {
+                    document.getElementById('nome').value = profile.nome;
+                    document.getElementById('apelido').value = profile.apelido;
+                    document.getElementById('ddn').value = profile.ddn;
+                    document.getElementById('profile-id').value = profile.id;
+                    popup.style.display = 'flex';
+                }
+            };
+        });
+    </script>
 </body>
 </html>
