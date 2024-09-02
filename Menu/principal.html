@@ -50,10 +50,26 @@
                     <input type="text" id="apelido" required>
                     <label for="ddn">Data de Nascimento:</label>
                     <input type="date" id="ddn" required>
-                    <label for="senha">Senha:</label>
-                    <input type="password" id="senha" required>
-                    <label for="confirmarsenha">Confirmar Senha:</label>
-                    <input type="password" id="confirmarsenha" required>
+                    <label for="deficiencia">Deficiência:</label>
+                    <select id="deficiencia" required>
+                        <option value="">Selecione</option>
+                        <option value="sim">Sim</option>
+                        <option value="nao">Não</option>
+                    </select>
+                    <div id="deficiencia-opcoes" style="display: none;">
+                        <label for="deficiencia-tipo">Tipo de Deficiência:</label>
+                        <select id="deficiencia-tipo">
+                            <option value="">Selecione</option>
+                            <option value="diabete">Diabete</option>
+                            <option value="alzhaimer">Alzheimer</option>
+                            <option value="catarata">Catarata</option>
+                            <option value="outras">Outras</option>
+                        </select>
+                        <div id="outras-doencas" style="display: none;">
+                            <label for="outras">Especifique:</label>
+                            <input type="text" id="outras" placeholder="Descreva outra deficiência">
+                        </div>
+                    </div>
                     <button type="submit" id="submit-btn">Cadastrar</button>
                 </form>
             </div>
@@ -66,12 +82,17 @@
             const popup = document.getElementById('popup');
             const closePopupBtn = document.getElementById('close-popup');
             const profileList = document.querySelector('.profile-list');
+            const deficienciaSelect = document.getElementById('deficiencia');
+            const deficienciaOpcoes = document.getElementById('deficiencia-opcoes');
+            const deficienciaTipoSelect = document.getElementById('deficiencia-tipo');
+            const outrasDoencasDiv = document.getElementById('outras-doencas');
 
             let profiles = []; // Array para armazenar perfis
 
             addProfileBtn.addEventListener('click', function() {
                 // Limpar campos do formulário para novo perfil
                 document.getElementById('perfil-form').reset();
+                deficienciaOpcoes.style.display = 'none'; // Esconder opções de deficiência
                 popup.style.display = 'flex'; // Exibe o popup
             });
 
@@ -86,6 +107,26 @@
                 }
             });
 
+            // Exibe ou oculta opções de deficiência
+            deficienciaSelect.addEventListener('change', function() {
+                if (this.value === 'sim') {
+                    deficienciaOpcoes.style.display = 'block';
+                } else {
+                    deficienciaOpcoes.style.display = 'none';
+                    deficienciaTipoSelect.value = '';
+                    outrasDoencasDiv.style.display = 'none';
+                }
+            });
+
+            // Exibe ou oculta caixa de mensagem para outras deficiências
+            deficienciaTipoSelect.addEventListener('change', function() {
+                if (this.value === 'outras') {
+                    outrasDoencasDiv.style.display = 'block';
+                } else {
+                    outrasDoencasDiv.style.display = 'none';
+                }
+            });
+
             // Adiciona novo perfil
             document.getElementById('perfil-form').addEventListener('submit', function(event) {
                 event.preventDefault();
@@ -93,12 +134,17 @@
                 const nome = document.getElementById('nome').value;
                 const apelido = document.getElementById('apelido').value;
                 const ddn = document.getElementById('ddn').value;
-                const senha = document.getElementById('senha').value;
-                const confirmarsenha = document.getElementById('confirmarsenha').value;
+                const deficiencia = document.getElementById('deficiencia').value;
+                const deficienciaTipo = document.getElementById('deficiencia-tipo').value;
+                const outras = document.getElementById('outras').value;
                 
-                if (senha !== confirmarsenha) {
-                    alert('As senhas não conferem.');
-                    return;
+                let deficienciaDetalhes = '';
+                if (deficiencia === 'sim') {
+                    if (deficienciaTipo === 'outras' && outras) {
+                        deficienciaDetalhes = `Outras: ${outras}`;
+                    } else {
+                        deficienciaDetalhes = deficienciaTipo;
+                    }
                 }
 
                 const profileId = document.getElementById('profile-id').value;
@@ -107,7 +153,7 @@
                     // Editar perfil existente
                     const profileIndex = profiles.findIndex(profile => profile.id === profileId);
                     if (profileIndex !== -1) {
-                        profiles[profileIndex] = { id: profileId, nome, apelido, ddn };
+                        profiles[profileIndex] = { id: profileId, nome, apelido, ddn, deficiencia: deficienciaDetalhes };
                     }
                 } else {
                     // Adicionar novo perfil
@@ -115,7 +161,8 @@
                         id: Date.now().toString(), // Gera um ID único para o perfil
                         nome,
                         apelido,
-                        ddn
+                        ddn,
+                        deficiencia: deficienciaDetalhes
                     };
                     profiles.push(newProfile);
                 }
@@ -130,6 +177,7 @@
                         <p><strong>Nome:</strong> ${profile.nome}</p>
                         <p><strong>Apelido:</strong> ${profile.apelido}</p>
                         <p><strong>Data de Nascimento:</strong> ${profile.ddn}</p>
+                        <p><strong>Deficiência:</strong> ${profile.deficiencia || 'Nenhuma'}</p>
                         <button onclick="editProfile('${profile.id}')">Editar</button>
                     </div>
                 `).join('');
@@ -141,7 +189,12 @@
                     document.getElementById('nome').value = profile.nome;
                     document.getElementById('apelido').value = profile.apelido;
                     document.getElementById('ddn').value = profile.ddn;
+                    document.getElementById('deficiencia').value = profile.deficiencia ? 'sim' : 'nao';
+                    document.getElementById('deficiencia-tipo').value = profile.deficiencia ? profile.deficiencia : '';
+                    document.getElementById('outras').value = profile.deficiencia.includes('Outras:') ? profile.deficiencia.split('Outras: ')[1] : '';
                     document.getElementById('profile-id').value = profile.id;
+                    deficienciaOpcoes.style.display = profile.deficiencia ? 'block' : 'none';
+                    outrasDoencasDiv.style.display = profile.deficiencia.includes('Outras:') ? 'block' : 'none';
                     popup.style.display = 'flex';
                 }
             };
