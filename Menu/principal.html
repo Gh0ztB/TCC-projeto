@@ -46,11 +46,11 @@
                     <input type="hidden" id="profile-id">
                     <label for="nome">Nome:</label>
                     <input type="text" id="nome" required>
-                    <label for="apelido">Apelido:</label>
-                    <input type="text" id="apelido" required>
+                    <label for="quarto">Quarto:</label>
+                    <input type="text" id="quarto" required>
                     <label for="ddn">Data de Nascimento:</label>
                     <input type="date" id="ddn" required>
-                    <label for="deficiencia">Deficiência:</label>
+                    <label for="deficiencia">Comorbidade:</label>
                     <select id="deficiencia" required>
                         <option value="">Selecione</option>
                         <option value="sim">Sim</option>
@@ -132,7 +132,7 @@
                 event.preventDefault();
                 
                 const nome = document.getElementById('nome').value;
-                const apelido = document.getElementById('apelido').value;
+                const quarto = document.getElementById('quarto').value;
                 const ddn = document.getElementById('ddn').value;
                 const deficiencia = document.getElementById('deficiencia').value;
                 const deficienciaTipo = document.getElementById('deficiencia-tipo').value;
@@ -153,14 +153,14 @@
                     // Editar perfil existente
                     const profileIndex = profiles.findIndex(profile => profile.id === profileId);
                     if (profileIndex !== -1) {
-                        profiles[profileIndex] = { id: profileId, nome, apelido, ddn, deficiencia: deficienciaDetalhes };
+                        profiles[profileIndex] = { id: profileId, nome, quarto, ddn, deficiencia: deficienciaDetalhes };
                     }
                 } else {
                     // Adicionar novo perfil
                     const newProfile = {
                         id: Date.now().toString(), // Gera um ID único para o perfil
                         nome,
-                        apelido,
+                        quarto,
                         ddn,
                         deficiencia: deficienciaDetalhes
                     };
@@ -175,7 +175,7 @@
                 profileList.innerHTML = profiles.map(profile => `
                     <div class="profile-item">
                         <p><strong>Nome:</strong> ${profile.nome}</p>
-                        <p><strong>Apelido:</strong> ${profile.apelido}</p>
+                        <p><strong>Quarto:</strong> ${profile.quarto}</p>
                         <p><strong>Data de Nascimento:</strong> ${profile.ddn}</p>
                         <p><strong>Deficiência:</strong> ${profile.deficiencia || 'Nenhuma'}</p>
                         <button onclick="editProfile('${profile.id}')">Editar</button>
@@ -187,7 +187,7 @@
                 const profile = profiles.find(profile => profile.id === profileId);
                 if (profile) {
                     document.getElementById('nome').value = profile.nome;
-                    document.getElementById('apelido').value = profile.apelido;
+                    document.getElementById('quarto').value = profile.quarto;
                     document.getElementById('ddn').value = profile.ddn;
                     document.getElementById('deficiencia').value = profile.deficiencia ? 'sim' : 'nao';
                     document.getElementById('deficiencia-tipo').value = profile.deficiencia ? profile.deficiencia : '';

@@ -11,7 +11,7 @@ body {
     background-color: #ffffff;
 }
 .login {
-    width: 600px;
+    width: 1000px;
     height: 100%;
     background: #c2c2c2;
     position: fixed;
@@ -19,7 +19,7 @@ body {
     border-bottom-right-radius: 25px;
     text-align: center;
     border: 1px solid;
-    margin-left: 650px;
+    margin-left: left;
    
 }
 .login {
@@ -111,7 +111,7 @@ p {
 }
 .caixa {
     padding: 30px;
-    margin-left: 60px;
+    margin-left: 258px;
     width: 500px;
     height: 600px;
     margin-top: 80px;
