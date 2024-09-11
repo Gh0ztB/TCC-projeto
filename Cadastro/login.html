@@ -5,40 +5,33 @@
 <link rel="icon" href="img/Logo.jpg">
 </head>
 <body>
-    <script type="module">
-        // Import the functions you need from the SDKs you need
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
-        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-analytics.js";
-        // TODO: Add SDKs for Firebase products that you want to use
-        // https://firebase.google.com/docs/web/setup#available-libraries
-      
-        // Your web app's Firebase configuration
-        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-auth-compat.js"></script>
+    <script>
         const firebaseConfig = {
-          apiKey: "AIzaSyCtEweN_0XldGoQ3MECp4VwIqK5CACre8M",
-          authDomain: "tcc-projeto-2723d.firebaseapp.com",
-          projectId: "tcc-projeto-2723d",
-          storageBucket: "tcc-projeto-2723d.appspot.com",
-          messagingSenderId: "21712391095",
-          appId: "1:21712391095:web:56cd8319ba39c55e993632",
-          measurementId: "G-8WY94TMSEM"
-        };
-      
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const analytics = getAnalytics(app);
-      </script>
+        apiKey: "AIzaSyCtEweN_0XldGoQ3MECp4VwIqK5CACre8M",
+        authDomain: "tcc-projeto-2723d.firebaseapp.com",
+        projectId: "tcc-projeto-2723d",
+        storageBucket: "tcc-projeto-2723d.appspot.com",
+        messagingSenderId: "21712391095",
+        appId: "1:21712391095:web:56cd8319ba39c55e993632",
+        measurementId: "G-8WY94TMSEM"
+      };
+      firebase.initializeApp(firebaseConfig);
+     
+    </script>
 <div class="login">
 
     <img  src="img/recover.png">
      <h1>Login</h1>
+    <form action="test.html">
     <div class="caixa">
         
         <div class="email">
-            <input type="email" placeholder="E-mail">
+            <input type="email" name="email" placeholder="E-mail">
         </div>
         <div class="senha">
-            <input type="password" placeholder="Senha">
+            <input type="password" name="password" placeholder="Senha">
         </div>
         <div class="lembrar-esquecer">
             <label><input type="checkbox">lembrar</label>
@@ -46,13 +39,16 @@
            </div>
     
         <div class="entrar">
-            <input type="submit" value="Entrar">
+            <button type="button" onclick="login()">Entrar</button>
+
+        </form>
             <p>Ainda não tem uma conta? <a class="a-link" href="cadastro.html">Crie uma!</a></p>
         </div>
         
 
     </div>
 </div> 
+
 
 
 </body>
