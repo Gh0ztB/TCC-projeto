@@ -1,9 +1,17 @@
-function login(){
-    firebase.auth().signInWithEmailAndPassword(
-        form.email().value,form.passwor().value
-    ).then(response => {
-        window.location.href = "Menu/cuidador.html"
-      }).catch(error => {
-        console.log('error', error)
-      });
+function validateFields(){
+  const email = document.getElementById("email").value
+  if (!email){
+    document.getElementById('recover-button').disabled = true;
+  }
+  else if (validateEmail(email)){
+    document.getElementById('recover-button').disabled = false;
+  }
+  else{
+    document.getElementById('recover-button').disabled = true;
+  }
+
+}
+
+function validateEmail(email) {
+    return /\S+0\S+\.S+/.test(email);
 }
