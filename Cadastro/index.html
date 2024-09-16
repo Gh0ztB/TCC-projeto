@@ -13,18 +13,19 @@
     <form>
         <div>
             <div><label>Email</label></div>
-            <input type="email" name="email" placeholder="seu@email.com"/>
+            <input type="email" name="email" onchange="validateFields()" placeholder="seu@email.com"/>
         </div>
             <div><label>Senha</label></div>
-            <input type="password" name="senha" placeholder="123456"/>
+            <input type="password" name="password" onchange="validateFields()" placeholder="123456"/>
         <div>
             <button type="button" class="rec" id="recover-button" disabled="true">Recuperar senha</button>
         </div>
-            <button type="button" class="ent"disabled="true">Entrar</button>
+            <button type="button" class="ent" disabled="">Entrar</button>
         <div>
-            <button type="button" class="reg"disabled="true">Registro</button>
+            <button type="button" class="reg" disabled="true">Registro</button>
         </div>    
     </form>
 </body>
+
 
 </html>

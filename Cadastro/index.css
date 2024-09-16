@@ -11,6 +11,9 @@ label{
 form{
     width: 300px;
 }
+input{
+    border: none;
+}
 input,button{
     padding: 10px;
     margin-bottom: 10px;
@@ -19,6 +22,13 @@ input,button{
 button{
     cursor: pointer;
 }
+button:active{
+    opacity: 0.8;
+}
+
+button[disabled= "true"] {
+    opacity: 0.7;
+}
 .rec{
     background:  transparent;
     color: white;
@@ -26,9 +36,8 @@ button{
 }
 
 .ent{
-    background:  transparent;
-    color: white;
-    border: 1px solid white;
+    background:white;
+    border: none;
 }
 
 .reg{
