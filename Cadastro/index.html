@@ -7,25 +7,29 @@
 </head>
 
 <link rel="stylesheet" href="index.css">
-<script scr="index.js"></script>
+
 
 <body>
     <form>
         <div>
             <div><label>Email</label></div>
-            <input type="email" name="email" onchange="validateFields()" placeholder="seu@email.com"/>
+            <input type="email" name="email" id="email" onchange="validateFields()" placeholder="seu@email.com"/>
+            <div class="error" id="email-required-error">Email é obrigatório</div>
+            <div class="error">Email é invalida</div>
         </div>
             <div><label>Senha</label></div>
-            <input type="password" name="password" onchange="validateFields()" placeholder="123456"/>
+            <input type="password" name="password" id="password" onchange="validateFields()" placeholder="123456"/>
+            <div class="error">Senha é obrigatória</div>
         <div>
             <button type="button" class="rec" id="recover-button" disabled="true">Recuperar senha</button>
         </div>
-            <button type="button" class="ent" disabled="">Entrar</button>
+            <button type="button" class="ent" id="login-button" disabled="true">Entrar</button>
         <div>
             <button type="button" class="reg" disabled="true">Registro</button>
         </div>    
     </form>
 </body>
 
+<script src="index.js"></script>
 
 </html>
