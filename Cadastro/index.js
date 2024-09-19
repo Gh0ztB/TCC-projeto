@@ -1,38 +1,38 @@
 function validateFields(){
     toggleButtonsDisable();
-    toggleEmailErrors();
+}
+function login() {
+    window.location.href = "../Menu/principal.html";
+}
+
+function toggleButtonsDisable(){
+    const emailValid = isEmailValid();
+    form.recoverbutton().disabled = !emailValid;
+
+    const passwordValid = isPasswordValid();
+    form.loginbutton().disabled = !emailValid || !passwordValid;
 }
 
 function isEmailValid() {
-    const email = document.getElementById("email").value
+    const email = form.email().value;
     if (!email) {
         return false;
     }
-    return validateEmail(email);
+        return true;
 }
-function toggleEmailErrors(){
-    const email = document.getElementById('email').value;
-    if (!email){
-        document.getElementById('email-required-error').style.display = block;
-    }
-}
-function toggleButtonsDisable(){
-    const emailValid = isEmailValid();
-    document.getElementById('recover-button').disabled = !emailValid;
 
-    const passwordValid = isPasswordValid();
-    document.getElementById('login-button').disabled = !passwordValid || !emailValid;
-
-}
 function isPasswordValid() {
-    const password = document.getElementById('password').value;
+    const password = form.password().value;
     if (!password) {
         return false;
     }
-     return true;
+        return true;
 
 }
-
-function validateEmail(email) {
-    return /\S+0\S+\.\S+/.test(email);
+ 
+const form ={
+    email: () => document.getElementById('email'),
+    password: () => document.getElementById('password'),
+    loginbutton: () => document.getElementById('login-button'),
+    recoverbutton: () => document.getElementById('recover-button')
 }
