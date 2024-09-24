@@ -185,31 +185,31 @@ form button:hover {
 
 
 select {
-    width: 100%; /* Largura total do contêiner */
-    padding: 10px; /* Espaçamento interno */
-    border-radius: 5px; /* Bordas arredondadas */
-    background-color: #fff; /* Cor de fundo */
-    font-size: 16px; /* Tamanho da fonte */
-    color: #333; /* Cor do texto */
-    appearance: none; /* Remove o estilo padrão do select */
+    width: 100%; 
+    padding: 10px; 
+    border-radius: 5px; 
+    background-color: #fff; 
+    font-size: 16px; 
+    color: #333; 
+    appearance: none; 
     background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="%23B08A74" viewBox="0 0 20 20"><polygon points="0,0 20,0 10,10"/></svg>'); /* Ícone de seta */
-    background-repeat: no-repeat; /* Não repetir o ícone */
-    background-position: right 10px center; /* Posição do ícone */
-    background-size: 10px; /* Tamanho do ícone */
-    cursor: pointer; /* Cursor do mouse */
+    background-repeat: no-repeat; 
+    background-position: right 10px center; 
+    background-size: 10px; 
+    cursor: pointer; 
 }
 
 
 
-/* Opções dentro do select */
+
 select option {
-    padding: 10px; /* Espaçamento interno para opções */
+    padding: 10px;
 }
 
-/* Estilo para desabilitar */
+
 select:disabled {
-    background-color: #f0f0f0; /* Cor de fundo quando desabilitado */
-    cursor: not-allowed; /* Cursor não permitido */
+    background-color: #f0f0f0; 
+    cursor: not-allowed; 
 }
 
 .popup{
@@ -221,12 +221,12 @@ transform: translate(-50%, -50%);
 background-color:white;
 box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 width: 80%;
-max-width: 450px; /* Limita a largura máxima do popup*/
-max-height: 80%; /* Limita a altura máxima do popup*/
-overflow-y: auto; /* Adiciona rolagem vertical se o conteúdo for maior */
+max-width: 450px; 
+max-height: 80%; 
+overflow-y: auto; 
  border-radius: 10px;
-padding: 20px; /* Adiciona um espaço interno */ 
-z-index: 1000; /* Garante que o popup fique acima de outros elementos */
+padding: 20px; 
+z-index: 1000; 
 }
 
 
