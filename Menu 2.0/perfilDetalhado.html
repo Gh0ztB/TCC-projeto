@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styleII.css">
+    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+    <link rel="icon" href="img/Logo.jpg">
+    <title>Notificação</title>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="sidebar">
+
+            <div>
+                <a href="Principal.html"><img src="img/1.png" alt=""></a>        
+                <a href="Notificaçao.html"><img src="img/2.png" alt=""></a>
+                <a href="Cuidador.html"><img src="img/4.png" alt=""></a>
+            </div>
+            <div>
+                <img class="logo" src="img/recover.png" alt="">           
+            </div>
+            
+
+            
+        </div>
+        <div class="main_content">
+                   
+            <div class="header">Perfil</div>
+            <div class="infor">
+                <div class="dados">
+                    <img id="foto" alt="Foto do perfil" width="150">
+                    <p><strong>Nome:</strong>  <br> <span id="nome"> </br>  </span></p>
+                    <p><strong>Quarto:</strong>  <br><span id="quarto"> </br> </span></p>
+                    <p><strong>Data de Nascimento:</strong>  <br><span id="ddn"> </br> </span></p>
+                    <p><strong>Altura:</strong>  <br><span id="altura"> </br> </span></p>
+                    <p><strong>Peso:</strong>   <br><span id="peso"> </br> </span> Kg</p>
+                    <p><strong>Condição Cronica:</strong>  <br> <span id="condicoes-cronicas"> </br> </span></p> 
+                    <p><strong>Alergia:</strong>  <br> <span id="alergia"> </br> </span></p>
+                </div>
+            </div>
+            <div class="rotina">
+
+            </div>
+        </div> 
+   
+        
+    </div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const profileData = JSON.parse(localStorage.getItem('profileData'));
+
+            if (profileData) {
+                document.getElementById('peso').textContent = profileData.peso;
+                document.getElementById('altura').textContent = profileData.altura;
+                document.getElementById('foto').src = profileData.fotoUrl;
+                document.getElementById('nome').textContent = profileData.nome;
+                document.getElementById('quarto').textContent = profileData.quarto;
+                document.getElementById('ddn').textContent = profileData.ddn;
+                document.getElementById('alergia').textContent = profileData.alergia;
+                document.getElementById('condicoes-cronicas').textContent = profileData.condicoesCronicas;
+            }
+        });
+       
+
+       
+    </script>
+</body>
+</html>
