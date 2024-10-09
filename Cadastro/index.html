@@ -24,12 +24,34 @@
         </div>
             <button type="button" class="ent" id="login-button" disabled="true" onclick="login()">Entrar</button>
         <div>
-            <button type="button" class="reg" disabled="true">Registro</button>
+            <button type="button" class="reg" onclick="register()">Registro</button>
         </div>    
     </form>
 </body>
 
 <script src="index.js"></script>
 <script src="validations.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-app-compat.js"></script>
+<script>
+    const firebaseConfig = {
+    apiKey: "AIzaSyCtEweN_0XldGoQ3MECp4VwIqK5CACre8M",
+    authDomain: "tcc-projeto-2723d.firebaseapp.com",
+    projectId: "tcc-projeto-2723d",
+    storageBucket: "tcc-projeto-2723d.appspot.com",
+    messagingSenderId: "21712391095",
+    appId: "1:21712391095:web:56cd8319ba39c55e993632",
+    measurementId: "G-8WY94TMSEM"
+  };
+  firebase.initializeApp(firebaseConfig);
+
+  console.log('antes')
+  firebase.auth().signInWithEmailAndPassword("sibulskis.dimitry@hotmail.com", "123456").then(response => {
+    console.log('success', response)
+  }).catch(error =>{
+    console.log('error', error)
+  });
+  console.log('depois')
+</script>
 
 </html>

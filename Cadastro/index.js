@@ -5,7 +5,7 @@ function login() {
     window.location.href = "../Menu 2.0/principal.html";
 }
 function register() {
-    window.location.href = "/pages/register.html";
+    window.location.href = "pages/register.html";
 }
 
 function toggleButtonsDisable(){
