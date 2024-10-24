@@ -10,17 +10,18 @@ button[disabled] {
 }
 .rec{
     background:  transparent;
-    color: white;
+    color: rgb(255, 255, 255);
     border: none
 }
 
 .ent{
-    background:white;
+    background:rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
     border: none;
 }
 
 .reg{
     background:  transparent;
-    color: white;
-    border: 1px solid white;
+    color: rgb(255, 255, 255);
+    border: 1px solid rgb(0, 0, 0);
 }
