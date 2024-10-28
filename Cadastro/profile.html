@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Perfil do Usuário</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="profile-container">
+    <h2>Bem-vindo, <span id="user-name"></span>!</h2>
+    <p>Email: <span id="user-email"></span></p>
+    <button id="logout-btn">Sair</button>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-auth-compat.js"></script>
+  <script src="firebase-config.js"></script>
+  <script>
+    // Verifica se o usuário está logado
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        // Exibe as informações do usuário
+        document.getElementById('user-name').textContent = user.displayName || 'Usuário';
+        document.getElementById('user-email').textContent = user.email;
+      } else {
+        // Redireciona para a página de login se não estiver autenticado
+        window.location.href = 'index.html';
+      }
+    });
+
+    // Função de Logout
+    document.getElementById('logout-btn').addEventListener('click', () => {
+      auth.signOut().then(() => {
+        window.location.href = 'index.html';
+      });
+    });
+  </script>
+</body>
+</html>

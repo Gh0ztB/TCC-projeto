@@ -1,41 +1,46 @@
-function validateFields(){
-    toggleButtonsDisable();
-}
-function login() {
-    window.location.href = "../Menu 2.0/principal.html";
-}
-function register() {
-    window.location.href = "pages/register.html";
+// Função de login de um usuário ja registrado no firebase
+document.getElementById('login-btn').addEventListener('click', () => {
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    if (email === '' || password === '') {
+  alert('Por favor, preencha todos os campos.');
+  return;
 }
 
-function toggleButtonsDisable(){
-    const emailValid = isEmailValid();
-    form.recoverbutton().disabled = !emailValid;
+    auth.signInWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        window.location.href = '../Menu 2.0/principal.html'; 
+      })
+        .catch((error) => alert('Erro: ' + error.message));
+  });
 
-    const passwordValid = isPasswordValid();
-    form.loginbutton().disabled = !emailValid || !passwordValid;
-}
-
-function isEmailValid() {
-    const email = form.email().value;
-    if (!email) {
-        return false;
+  document.getElementById('forgot-password-link').addEventListener('click', (e) => {
+    e.preventDefault();
+    const email = prompt('Digite seu e-mail para recuperar a senha:');
+    if (email) {
+      auth.sendPasswordResetEmail(email)
+        .then(() => alert('E-mail de recuperação enviado!'))
+        .catch((error) => alert('Erro: ' + error.message));
     }
-        return true;
+  });
+
+  // Função para criar um novo usuário no Firebase
+document.getElementById('register-btn').addEventListener('click', () => {
+const email = document.getElementById('email').value;
+const password = document.getElementById('password').value;
+
+if (email === '' || password === '') {
+  alert('Por favor, preencha todos os campos.');
+  return;
 }
 
-function isPasswordValid() {
-    const password = form.password().value;
-    if (!password) {
-        return false;
-    }
-        return true;
-
-}
- 
-const form ={
-    email: () => document.getElementById('email'),
-    password: () => document.getElementById('password'),
-    loginbutton: () => document.getElementById('login-button'),
-    recoverbutton: () => document.getElementById('recover-button')
-}
+auth.createUserWithEmailAndPassword(email, password)
+  .then((userCredential) => {
+    alert('Usuário registrado com sucesso!');
+    window.location.href = 'profile.html'; // Redireciona para a página de perfil após o registro.
+  })
+  .catch((error) => {
+    alert('Erro ao registrar: ' + error.message);
+  });
+});

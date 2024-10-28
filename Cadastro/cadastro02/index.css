@@ -1,11 +1,15 @@
 body{
     background-color: rgb(247, 247, 247);
-    display: flex;
-    justify-content: left;
     align-items: center;
     margin-left: 70px;
     margin-bottom: 30px;    
     height: 100vh;
+}
+img{
+    margin-top: 80px;
+    width: 250px;
+    margin-left: 90px;
+    
 }
 label{
     color: rgb(255, 255, 255);
@@ -15,8 +19,9 @@ form{
     padding: 30px;
     height: 500px;
     justify-content: center;
-    background-color: #0634a2;
+    background-color: #1044c0;
     border-radius: 30px;
+
 }
 input{
     border: none;

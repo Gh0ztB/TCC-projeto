@@ -1,58 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - RECOVER</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login-Recover</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-
-<link rel="stylesheet" href="index.css">
-<link rel="stylesheet" href="global.css">
-<link rel="icon" href="img/Logo.jpg">
-
-
 <body>
-    <form>
-        <div>
-            <div><label>Email</label></div>
-            <input type="email" name="email" id="email" onchange="validateFields()" placeholder="seu@email.com"/>
-        </div>
-            <div><label>Senha</label></div>
-            <input type="password" name="password" id="password" onchange="validateFields()" placeholder="123456"/>
+  <div class="login-container">
+    <h1>RECOVER</h1>
 
-        <div>
-            <button type="button" class="rec" id="recover-button" disabled="true">Recuperar senha</button>
-        </div>
-            <button type="button" class="ent" id="login-button" disabled="true" onclick="login()">Entrar</button>
-        <div>
-            <button type="button" class="reg" onclick="register()">Registro</button>
-        </div>    
-    </form>
+    <label for="email">Email</label>
+    <input type="email" id="email" placeholder="seu@email.com" />
+
+    <label for="password">Senha</label>
+    <input type="password" id="password" placeholder="123456" />
+
+    <a href="#" id="forgot-password-link">Recuperar senha</a>
+
+    <button id="login-btn">Entrar</button>
+    <button id="register-btn" class="outline">Registro</button>
+
+    <p id="message"></p>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-auth-compat.js"></script>
+  <script src="firebase-config.js"></script>
+  <script src="index.js"></script>
+  
 </body>
-
-<script src="index.js"></script>
-<script src="validations.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-app-compat.js"></script>
-<script>
-    const firebaseConfig = {
-    apiKey: "AIzaSyCtEweN_0XldGoQ3MECp4VwIqK5CACre8M",
-    authDomain: "tcc-projeto-2723d.firebaseapp.com",
-    projectId: "tcc-projeto-2723d",
-    storageBucket: "tcc-projeto-2723d.appspot.com",
-    messagingSenderId: "21712391095",
-    appId: "1:21712391095:web:56cd8319ba39c55e993632",
-    measurementId: "G-8WY94TMSEM"
-  };
-  firebase.initializeApp(firebaseConfig);
-
-  console.log('antes')
-  firebase.auth().signInWithEmailAndPassword("sibulskis.dimitry@hotmail.com", "123456").then(response => {
-    console.log('success', response)
-  }).catch(error =>{
-    console.log('error', error)
-  });
-  console.log('depois')
-</script>
-
 </html>

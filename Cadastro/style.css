@@ -1,0 +1,78 @@
+/* Estilo global */
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f0f0;
+  font-family: Arial, sans-serif;
+}
+
+/* Container do formulário */
+.login-container {
+  background-color: #0052cc;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  text-align: center;
+}
+
+.login-container h1 {
+  color: #fff;
+  margin-bottom: 20px;
+  font-size: 32px;
+  letter-spacing: 2px;
+}
+
+/* Inputs de email e senha */
+.login-container input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 25px;
+  outline: none;
+  background-color: #fff;
+  font-size: 16px;
+}
+
+/* Botões */
+button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+button#login-btn {
+  background-color: #002966;
+  color: #fff;
+}
+
+button.outline {
+  background-color: transparent;
+  color: #fff;
+  border: 2px solid #fff;
+}
+
+/* Link para recuperar senha */
+a {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  margin: 10px 0;
+}
+
+a:hover {
+  text-decoration: underline;
+}
