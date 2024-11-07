@@ -7,14 +7,14 @@ document.getElementById('login-btn').addEventListener('click', () => {
   alert('Por favor, preencha todos os campos.');
   return;
 }
-
+//redirecionamento sucesso ou erro
     auth.signInWithEmailAndPassword(email, password)
       .then((userCredential) => {
         window.location.href = '../Menu 2.0/principal.html'; 
       })
         .catch((error) => alert('Erro: ' + error.message));
   });
-
+// Recuperação email
   document.getElementById('forgot-password-link').addEventListener('click', (e) => {
     e.preventDefault();
     const email = prompt('Digite seu e-mail para recuperar a senha:');
@@ -35,10 +35,10 @@ if (email === '' || password === '') {
   return;
 }
 
+// Mensagem de falha ou sucesso registro
 auth.createUserWithEmailAndPassword(email, password)
   .then((userCredential) => {
     alert('Usuário registrado com sucesso!');
-    window.location.href = 'profile.html'; // Redireciona para a página de perfil após o registro.
   })
   .catch((error) => {
     alert('Erro ao registrar: ' + error.message);
