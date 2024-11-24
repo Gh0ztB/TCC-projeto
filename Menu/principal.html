@@ -4,73 +4,164 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styleII.css">
-    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+    <script src="script.js"></script>
     <link rel="icon" href="img/Logo.jpg">
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <script src="../Menu/script.js"></script>
     <title>Principal</title>
 </head>
 <body>
     <div class="wrapper">
+        <!-- Barra lateral com ícones -->
         <div class="sidebar">
             <div>
-                <a href="Principal.html"><img src="img/amarelo.jpg" alt=""></a>        
-                <a href="Notificaçao.html"><img src="img/sino verde.png" alt=""></a>        
-                <a href="Cuidador.html"><img src="img/azul.png" alt=""></a>  
-                <a href="index2.html"><img src="img/marrom.png" alt=""></a>      
+                <a href="Principal.html"><img src="img/1.png" alt="Página Principal"></a>        
+                <a href="Notificaçao.html"><img src="img/2.png" alt="Notificações"></a>        
+                <a href="Cuidador.html"><img src="img/3.png" alt="Cuidador"></a>        
             </div>
             <div class="perfil">
-                <img class="logo" src="img/recover.png" alt="">           
+                <img class="logo" src="img/recover.png" alt="Logo">           
             </div>
         </div>
+
+        <!-- Conteúdo principal -->
         <div class="main_content">
-            <style>
-                .wrapper .main_content .header {
-                    background: #d6cc3f;
-                }
-            </style>
-            <div class="header">Perfil dos Idosos </div>
+            <div class="header" style="background: #B08A74;">Perfil dos Idosos</div>
             <div class="info">
                 <div class="profile-container">
+                    <!-- Botão para adicionar novo perfil -->
                     <div class="add-profile" id="add-profile">
-                        <img src="img/4.png" alt=""><p>Cadastrar Idoso</p>
+                        <img src="img/mais.png" alt="Adicionar Perfil"><p>Cadastrar Idoso</p>
                     </div>
+                    <!-- Lista de perfis -->
                     <div class="profile-list">
-                        <!-- Perfis vão aqui -->
+                        <!-- Perfis serão exibidos aqui dinamicamente -->
                     </div>
                 </div>
            </div>
         </div>
+
+        <!-- Popup para adicionar ou editar perfil -->
         <div class="popup" id="popup">
             <div class="popup-content">
                 <span class="material-symbols-outlined close" id="close-popup">close</span>
                 <h2 id="popup-titulo">Adicionar Perfil</h2>
+                
+                <!-- Formulário para adicionar/editar perfil -->
                 <form id="perfil-form">
                     <input type="hidden" id="profile-id">
                     <label for="nome">Nome:</label>
                     <input type="text" id="nome" required>
+
                     <label for="quarto">Quarto:</label>
                     <input type="text" id="quarto" required>
+
+                    <label for="foto">Foto do perfil</label>
+                    <input type="file" id="foto" accept="image/*">
+
+                    <label for="peso">Peso (Kg)</label>
+                    <input type="number" id="peso" required>
+
+                    <label for="altura">Altura<label>
+                    <input type="number" id="altura" required>
+                    
                     <label for="ddn">Data de Nascimento:</label>
-                    <input type="date" id="ddn" required>
-                    <label for="deficiencia">Comorbidade:</label>
-                    <select id="deficiencia" required>
+                    <input type="date" id="ddn">
+
+                    <label for="condicoes-cronicas">Condições Crônicas?</label>
+                    <select id="condicoes-cronicas" required>
                         <option value="">Selecione</option>
                         <option value="sim">Sim</option>
                         <option value="nao">Não</option>
                     </select>
-                    <div id="deficiencia-opcoes" style="display: none;">
-                        <label for="deficiencia-tipo">Tipo de Deficiência:</label>
-                        <select id="deficiencia-tipo">
+
+                    <div id="condicoes-cronicas-opcoes" style="display: none;">
+                        <label for="condicoes-cronicas-tipo">Tipo de Condição Crônica:</label>
+                        <select id="condicoes-cronicas-tipo">
                             <option value="">Selecione</option>
                             <option value="diabete">Diabete</option>
-                            <option value="alzhaimer">Alzheimer</option>
-                            <option value="catarata">Catarata</option>
+                            <option value="hipertensao">Hipertensão</option>
+                            <option value="demencia">Demência</option>
+                            <option value="problemas-cardiacos">Problemas Cardíacos</option>    
+                            <option value="alzheimer">Alzheimer</option>
                             <option value="outras">Outras</option>
                         </select>
-                        <div id="outras-doencas" style="display: none;">
+                    
+                        <div id="outras-condicoes" style="display: none;">
                             <label for="outras">Especifique:</label>
-                            <input type="text" id="outras" placeholder="Descreva outra deficiência">
+                            <input type="text" id="outras" placeholder="Descreva outra condição crônica">
                         </div>
                     </div>
+
+                    <label for="alergia">Alergia?</label>
+                    <select id="alergia" required>
+                        <option value="">Selecione</option>
+                        <option value="sim">Sim</option>
+                        <option value="nao">Não</option>
+                    </select>
+
+                    <div id="alergia-opcoes" style="display: none;">
+                        <label for="tipo-alergia">Tipo de Alergia:</label>
+                        <select id="tipo-alergia">
+                            <option value="">Selecione</option>
+                            <option value="alimento">Alimento</option>
+                            <option value="medicamento">Medicamento</option>
+                            <option value="substancias">Substâncias</option>
+                        </select>
+
+                        <div id="alergia-alimentos" style="display: none;">
+                            <label for="tipo-alergia-alimentos">Especifique:</label>
+                            <select id="tipo-alergia-alimentos">
+                                <option value="">Selecione</option>
+                                <option value="leite">Leite de Vaca</option>
+                                <option value="frutos-do-mar">Frutos do Mar</option>
+                                <option value="cereais">Cereais</option>
+                                <option value="ovo">Ovo</option>
+                                <option value="soja">Soja</option>
+                                <option value="outro">Outro</option>
+                            </select>
+
+                            <div id="outra-alergia" style="display: none;">
+                                <label for="outra-alergia-input">Especifique:</label>
+                                <input type="text" id="outra-alergia-input" placeholder="Descreva outra alergia">
+                            </div>
+                        </div>
+
+                        <div id="alergia-medicamento" style="display: none;">
+                            <label for="tipo-alergia-medicamento">Especifique:</label>
+                            <select id="tipo-alergia-medicamento">
+                                <option value="">Selecione</option>
+                                <option value="penicilina">Penicilina</option>
+                                <option value="sulfonamidas">Sulfonamidas</option>
+                                <option value="cefalosporinas">Cefalosporinas</option>
+                                <option value="dipirona">Dipirona</option>
+                                <option value="nimesulida">Nimesulida</option>
+                                <option value="outro">Outro</option>
+                            </select>
+
+                            <div id="outra-alergia-medicamento" style="display: none;">
+                                <label for="outra-alergia-medicamento-input">Especifique:</label>
+                                <input type="text" id="outra-alergia-medicamento-input" placeholder="Descreva outra alergia a medicamento">
+                            </div>
+                        </div>
+
+                        <div id="alergia-substancias" style="display: none;">
+                            <label for="tipo-alergia-substancias">Especifique:</label>
+                            <select id="tipo-alergia-substancias">
+                                <option value="">Selecione</option>
+                                <option value="polens">Pólens</option>
+                                <option value="acaros">Ácaros</option>
+                                <option value="latex">Látex</option>
+                                <option value="outro">Outro</option>
+                            </select>
+
+                            <div id="outra-alergia-substancias" style="display: none;">
+                                <label for="outra-alergia-substancias-input">Especifique:</label>
+                                <input type="text" id="outra-alergia-substancias-input" placeholder="Descreva outra alergia a substância">
+                            </div>
+                        </div>
+                    </div>
+
                     <button type="submit" id="submit-btn">Cadastrar</button>
                 </form>
             </div>
@@ -78,148 +169,10 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const addProfileBtn = document.getElementById('add-profile');
-            const popup = document.getElementById('popup');
-            const closePopupBtn = document.getElementById('close-popup');
-            const profileList = document.querySelector('.profile-list');
-            const deficienciaSelect = document.getElementById('deficiencia');
-            const deficienciaOpcoes = document.getElementById('deficiencia-opcoes');
-            const deficienciaTipoSelect = document.getElementById('deficiencia-tipo');
-            const outrasDoencasDiv = document.getElementById('outras-doencas');
+        
+   
+</script>
 
-            let profiles = []; // Array para armazenar perfis
-
-            addProfileBtn.addEventListener('click', function() {
-                // Limpar campos do formulário para novo perfil
-                document.getElementById('perfil-form').reset();
-                deficienciaOpcoes.style.display = 'none'; // Esconder opções de deficiência
-                popup.style.display = 'flex'; // Exibe o popup
-            });
-
-            closePopupBtn.addEventListener('click', function() {
-                popup.style.display = 'none'; // Oculta o popup
-            });
-
-            // Fecha o popup se o usuário clicar fora dele
-            window.addEventListener('click', function(event) {
-                if (event.target === popup) {
-                    popup.style.display = 'none';
-                }
-            });
-
-            // Exibe ou oculta opções de deficiência
-            deficienciaSelect.addEventListener('change', function() {
-                if (this.value === 'sim') {
-                    deficienciaOpcoes.style.display = 'block';
-                } else {
-                    deficienciaOpcoes.style.display = 'none';
-                    deficienciaTipoSelect.value = '';
-                    outrasDoencasDiv.style.display = 'none';
-                }
-            });
-
-            // Exibe ou oculta caixa de mensagem para outras deficiências
-            deficienciaTipoSelect.addEventListener('change', function() {
-                if (this.value === 'outras') {
-                    outrasDoencasDiv.style.display = 'block';
-                } else {
-                    outrasDoencasDiv.style.display = 'none';
-                }
-            });
-
-            // Adiciona novo perfil
-            document.getElementById('perfil-form').addEventListener('submit', function(event) {
-                event.preventDefault();
-                
-                const nome = document.getElementById('nome').value;
-                const quarto = document.getElementById('quarto').value;
-                const ddn = document.getElementById('ddn').value;
-                const deficiencia = document.getElementById('deficiencia').value;
-                const deficienciaTipo = document.getElementById('deficiencia-tipo').value;
-                const outras = document.getElementById('outras').value;
-                
-                let deficienciaDetalhes = '';
-                if (deficiencia === 'sim') {
-                    if (deficienciaTipo === 'outras' && outras) {
-                        deficienciaDetalhes = `Outras: ${outras}`;
-                    } else {
-                        deficienciaDetalhes = deficienciaTipo;
-                    }
-                }
-
-                const profileId = document.getElementById('profile-id').value;
-                
-                if (profileId) {
-                    // Editar perfil existente
-                    const profileIndex = profiles.findIndex(profile => profile.id === profileId);
-                    if (profileIndex !== -1) {
-                        profiles[profileIndex] = { id: profileId, nome, quarto, ddn, deficiencia: deficienciaDetalhes };
-                    }
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Atualização de Cor</title>
-    <style>
-        #circle {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            background-color: red;
-            margin: 20px auto;
-        }
-        #dateInput {
-            display: block;
-            margin: 10px auto;
-        }
-    </style>
-<body>
-    <div id="circle"></div>
-    <button onclick="updateDate()">Alterar Data</button>
-</body>
-                } else {
-                    // Adicionar novo perfil
-                    const newProfile = {
-                        id: Date.now().toString(), // Gera um ID único para o perfil
-                        nome,
-                        quarto,
-                        ddn,
-                        deficiencia: deficienciaDetalhes
-                    };
-                    profiles.push(newProfile);
-                }
-
-                updateProfileList();
-                popup.style.display = 'none';
-            });
-
-            function updateProfileList() {
-                profileList.innerHTML = profiles.map(profile => `
-                    <div class="profile-item">
-                        <p><strong>Nome:</strong> ${profile.nome}</p>
-                        <p><strong>Quarto:</strong> ${profile.quarto}</p>
-                        <p><strong>Data de Nascimento:</strong> ${profile.ddn}</p>
-                        <p><strong>Deficiência:</strong> ${profile.deficiencia || 'Nenhuma'}</p>
-                        <button onclick="editProfile('${profile.id}')">Editar</button>
-                    </div>
-                `).join('');
-            }
-
-            window.editProfile = function(profileId) {
-                const profile = profiles.find(profile => profile.id === profileId);
-                if (profile) {
-                    document.getElementById('nome').value = profile.nome;
-                    document.getElementById('quarto').value = profile.quarto;
-                    document.getElementById('ddn').value = profile.ddn;
-                    document.getElementById('deficiencia').value = profile.deficiencia ? 'sim' : 'nao';
-                    document.getElementById('deficiencia-tipo').value = profile.deficiencia ? profile.deficiencia : '';
-                    document.getElementById('outras').value = profile.deficiencia.includes('Outras:') ? profile.deficiencia.split('Outras: ')[1] : '';
-                    document.getElementById('profile-id').value = profile.id;
-                    deficienciaOpcoes.style.display = profile.deficiencia ? 'block' : 'none';
-                    outrasDoencasDiv.style.display = profile.deficiencia.includes('Outras:') ? 'block' : 'none';
-                    popup.style.display = 'flex';
-                }
-            };
-        });
-    </script>
+    
 </body>
 </html>

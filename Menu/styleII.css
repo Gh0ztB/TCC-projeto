@@ -57,7 +57,10 @@ img {
     height: 100px;
     color: #717171;
     line-height: 25px;
+    
 }
+
+
 /* Estilo para o contêiner de perfil e botão */
 .profile-container {
     display: flex;
@@ -130,6 +133,7 @@ img {
     width: 80%;
     max-width: 500px;
     position: relative;
+    overflow-y: auto;
 }
 
 .popup-content h2 {
@@ -152,8 +156,9 @@ form label {
 
 form input[type="text"],
 form input[type="date"],
+form input[type="number"],
 form input[type="password"] {
-    width: calc(100% - 22px);
+    width: 100%;
     padding: 10px;
     margin-top: 5px;
     border-radius: 4px;
@@ -173,3 +178,89 @@ form button {
 form button:hover {
     background-color: #a07a63;
 }
+
+
+
+
+
+
+select {
+    width: 100%; /* Largura total do contêiner */
+    padding: 10px; /* Espaçamento interno */
+    border-radius: 5px; /* Bordas arredondadas */
+    background-color: #fff; /* Cor de fundo */
+    font-size: 16px; /* Tamanho da fonte */
+    color: #333; /* Cor do texto */
+    appearance: none; /* Remove o estilo padrão do select */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="%23B08A74" viewBox="0 0 20 20"><polygon points="0,0 20,0 10,10"/></svg>'); /* Ícone de seta */
+    background-repeat: no-repeat; /* Não repetir o ícone */
+    background-position: right 10px center; /* Posição do ícone */
+    background-size: 10px; /* Tamanho do ícone */
+    cursor: pointer; /* Cursor do mouse */
+}
+
+
+
+/* Opções dentro do select */
+select option {
+    padding: 10px; /* Espaçamento interno para opções */
+}
+
+/* Estilo para desabilitar */
+select:disabled {
+    background-color: #f0f0f0; /* Cor de fundo quando desabilitado */
+    cursor: not-allowed; /* Cursor não permitido */
+}
+
+.popup{
+display: none; position: fixed;
+position: fixed;
+left: 50%;
+top: 50%;
+transform: translate(-50%, -50%);
+background-color:white;
+box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+width: 80%;
+max-width: 450px; /* Limita a largura máxima do popup*/
+max-height: 80%; /* Limita a altura máxima do popup*/
+overflow-y: auto; /* Adiciona rolagem vertical se o conteúdo for maior */
+ border-radius: 10px;
+padding: 20px; /* Adiciona um espaço interno */ 
+z-index: 1000; /* Garante que o popup fique acima de outros elementos */
+}
+
+
+
+
+/*Perfil Detalhado:*/
+.wrapper .main_content .header {
+    background: #B08A74;
+    height: 50px;
+}
+.infor {
+    background: #ece1d9;
+    width: 300px;
+    height: 100%;
+    position: fixed;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 40px;
+    margin-left: 10px;
+    align-items: center;
+}
+.dados {
+    color: #717171;
+    margin-left: 15px;
+    font-size: 20px;
+    
+}
+
+.rotina
+ {
+    background: #cbcedf;
+    border-radius: 15px;
+    padding: 20px;
+    width: 750px;
+    height: 100%;
+    margin-top: -250px;
+    margin-left: 350px;
+ }

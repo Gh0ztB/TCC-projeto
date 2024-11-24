@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styleII.css">
+    <script src="script.js"></script>
+    <link rel="icon" href="img/Logo.jpg">
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <title>Perfil</title>
+    <style>
+        .rotina {
+    background: #cbcedf;
+    border-radius: 15px;
+    padding: 20px;
+    width: 750px;
+    margin-top: -250px;
+    margin-left: 350px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.to-do {
+    background: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 100%;
+    margin: 10px 0;
+}
+
+.titulo-rotina {
+    text-align: center;
+    font-size: 1.8rem;
+    color: #333;
+}
+
+.to-do div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.to-do p {
+    font-size: 1.2rem;
+    margin: 0;
+    padding-right: 10px;
+    width: 40px;
+}
+
+.taskInput {
+    width: calc(100% - 120px);
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+}
+
+.timeInput {
+    width: 100px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+}
+
+.addTaskBtn {
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.addTaskBtn:hover {
+    background-color: #45a049;
+}
+
+.taskList {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.taskList li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin-top: 8px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: #555;
+    transition: background-color 0.3s; /* Transição suave para a mudança de cor */
+}
+
+.overdue {
+    background-color: #ffcccb; /* Cor para tarefas atrasadas */
+    border-left: 5px solid #ff6347; /* Borda esquerda para destacar */
+}
+
+.on-time {
+    background-color: #ccffcc; /* Cor para tarefas no prazo */
+    border-left: 5px solid #4CAF50; /* Borda esquerda para destacar */
+}
+
+.deleteBtn {
+    background: #ff6347;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.deleteBtn:hover {
+    background-color: #e5533d;
+}
+
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="sidebar">
+            <div>
+                <a href="Principal.html"><img src="img/1.png" alt=""></a>        
+                <a href="Notificaçao.html"><img src="img/2.png" alt=""></a>
+                <a href="Cuidador.html"><img src="img/4.png" alt=""></a>
+            </div>
+            <div>
+                <img class="logo" src="img/recover.png" alt="">           
+            </div>
+        </div>
+        <div class="main_content">
+            <div class="header">Perfil</div>
+            <div class="infor">
+                <div class="dados">
+                    <img id="foto" alt="Foto do perfil" width="150">
+                    <p><strong>Nome:</strong>  <br> <span id="nome"> </span></p>
+                    <p><strong>Quarto:</strong>  <br><span id="quarto"> </span></p>
+                    <p><strong>Data de Nascimento:</strong>  <br><span id="ddn"> </span></p>
+                    <p><strong>Altura:</strong>  <br><span id="altura"> </span></p>
+                    <p><strong>Peso:</strong>   <br><span id="peso"> </span> Kg</p>
+                    <p><strong>Condição Cronica:</strong>  <br> <span id="condicoes-cronicas"> </span></p> 
+                    <p><strong>Alergia:</strong>  <br> <span id="alergia"> </span></p>
+                </div>
+
+                <div class="rotina">
+                    <div class="to-do">
+                        <h2 class="titulo-rotina">Rotina</h2>
+                        <div>
+                            <p>Tarefa</p>
+                            <input type="text" placeholder="Adicionar nova tarefa..." class="taskInput">
+                            <input type="time" class="timeInput" id="timeFirst">
+                            <button class="addTaskBtn"><i class='bx bx-plus'></i></button>
+                            <ul class="taskList" id="taskList1"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Carregar dados do perfil
+            const profileData = JSON.parse(localStorage.getItem('profileData'));
+            if (profileData) {
+                document.getElementById('peso').textContent = profileData.peso;
+                document.getElementById('altura').textContent = profileData.altura;
+                document.getElementById('foto').src = profileData.fotoUrl;
+                document.getElementById('nome').textContent = profileData.nome;
+                document.getElementById('quarto').textContent = profileData.quarto;
+                document.getElementById('ddn').textContent = profileData.ddn;
+                document.getElementById('alergia').textContent = profileData.alergia;
+                document.getElementById('condicoes-cronicas').textContent = profileData.condicoesCronicas;
+            }
+
+            // Função para carregar a lista de tarefas
+            function loadTasks() {
+                const taskLists = document.querySelectorAll('.taskList');
+                taskLists.forEach((taskList, index) => {
+                    const savedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
+                    taskList.innerHTML = '';
+
+                    savedTasks.forEach(task => {
+                        if (task.time === taskList.id) {
+                            const li = document.createElement('li');
+                            const checkbox = document.createElement('input');
+                            const label = document.createElement('label');
+                            const deleteBtn = document.createElement('button');
+
+                            checkbox.type = 'checkbox';
+                            checkbox.checked = task.completed;
+                            checkbox.addEventListener('change', () => {
+                                task.completed = checkbox.checked;
+                                localStorage.setItem('tasks', JSON.stringify(savedTasks));
+                            });
+
+                            label.textContent = `${task.text} - ${task.time} ${task.conclusionTime}`;
+                            const taskDate = new Date(`${new Date().toISOString().split('T')[0]}T${task.conclusionTime}`);
+                            const now = new Date();
+
+                            // Verificar se a tarefa está atrasada
+                            if (taskDate < now) {
+                                li.classList.add('overdue');
+                            } else {
+                                li.classList.add('on-time');
+                            }
+
+                            deleteBtn.textContent = 'Deletar';
+                            deleteBtn.className = 'deleteBtn';
+                            deleteBtn.addEventListener('click', () => {
+                                const indexToRemove = savedTasks.indexOf(task);
+                                if (indexToRemove > -1) {
+                                    savedTasks.splice(indexToRemove, 1);
+                                    localStorage.setItem('tasks', JSON.stringify(savedTasks));
+                                    loadTasks(); // Recarregar as tarefas após remoção
+                                }
+                            });
+
+                            li.appendChild(checkbox);
+                            li.appendChild(label);
+                            li.appendChild(deleteBtn);
+                            taskList.appendChild(li);
+                        }
+                    });
+                });
+            }
+
+            // Função para adicionar uma tarefa
+            document.querySelectorAll('.addTaskBtn').forEach((button, index) => {
+                button.addEventListener('click', () => {
+                    const taskInput = document.querySelectorAll('.taskInput')[index];
+                    const timeInput = document.querySelectorAll('.timeInput')[index];
+                    const taskText = taskInput.value.trim();
+                    const conclusionTime = timeInput.value.trim();
+                    const taskList = document.querySelectorAll('.taskList')[index];
+
+                    if (taskText && conclusionTime) {
+                        const newTask = {
+                            text: taskText,
+                            time: taskList.id,
+                            completed: false,
+                            conclusionTime: conclusionTime
+                        };
+
+                        // Salvar tarefas no localStorage
+                        const savedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
+                        savedTasks.push(newTask);
+                        localStorage.setItem('tasks', JSON.stringify(savedTasks));
+
+                        // Recarregar as tarefas na página
+                        loadTasks();
+                        taskInput.value = '';
+                        timeInput.value = '';
+                    }
+                });
+            });
+
+            // Carregar as tarefas ao iniciar a página
+            loadTasks();
+        });
+    </script>
+</body>
+</html>
