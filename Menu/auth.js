@@ -6,7 +6,7 @@ if (user) {
     document.getElementById('user-email').textContent = user.email;
 } else {
     // Redireciona para a página de login se não estiver autenticado
-    window.location.href = 'index.html';
+    window.location.href = '../Cadastro/index.html';
 }
 });
 

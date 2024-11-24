@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login-Recover</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="login-container">
+    <h1>RECOVER</h1>
+
+    <label for="email">Email</label>
+    <input type="email" id="email" placeholder="seu@email.com" />
+
+    <label for="password">Senha</label>
+    <input type="password" id="password" placeholder="123456" />
+
+    <a href="#" id="forgot-password-link">Recuperar senha</a>
+
+    <button id="login-btn">Entrar</button>
+    <button id="register-btn" class="outline">Registro</button>
+
+    <p id="message"></p>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-auth-compat.js"></script>
+  <script src="firebase-config.js"></script>
+  <script src="index.js"></script>
+  
+</body>
+</html>
